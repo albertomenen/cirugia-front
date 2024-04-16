@@ -15,6 +15,7 @@ const SignupModal = () => {
     const router = useRouter();
     const signupModal = useSignupModal();
     const [email, setEmail] = useState('');
+    const [name, setName]= useState('')
     const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
     const [errors, setErrors] = useState<string[]>([]);
@@ -25,6 +26,7 @@ const SignupModal = () => {
     const submitSignup = async () => {
         const formData = {
             email: email,
+            name: name,
             password1: password1,
             password2: password2,
         }
@@ -54,6 +56,8 @@ const SignupModal = () => {
                 className="space-y-4"
             >
                 <input onChange={(e) => setEmail(e.target.value)} placeholder="Your e-mail address" type="email" className="w-full h-[54px] px-4 border border-gray-300 rounded-xl" />
+
+                <input onChange={(e) => setName(e.target.value)} placeholder="Your name" type="text" className="w-full h-[54px] px-4 border border-gray-300 rounded-xl" />
 
                 <input onChange={(e) => setPassword1(e.target.value)} placeholder="Your password" type="password" className="w-full h-[54px] px-4 border border-gray-300 rounded-xl" />
 

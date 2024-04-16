@@ -16,7 +16,7 @@ const MyReservationsPage = async () => {
     console.log(reservations);
     return(
         <main className="max-w-[1500px] mx-auto px-6 pb-6">
-            <h1 className="mt-6 mb-2 text-2xl">reservation.procedures</h1>
+            <h1 className="mt-6 mb-2 text-2xl">{reservations.procedures}</h1>
 
             <div className="space-y-4">
                 {reservations.map((reservation: any) => {

@@ -48,7 +48,7 @@ const PrecedureDetailPage = async ({params}: {params: {id:string}}) => {
                             />
                         )}
 
-                        <p><strong>{procedures.doctor.name}{procedures.doctor.avatar_url}</strong> sería tu doctor</p>
+                        <p><strong>{procedures.doctor.name}</strong> sería tu doctor</p>
 
                     </Link>
 

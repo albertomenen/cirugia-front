@@ -45,7 +45,6 @@ const ReservationSidebar: React.FC<ReservationSidebarProps> = ({
      const [totalPrice, setTotalPrice] = useState<number>(0);
      const [dateRange, setDateRange] = useState<Range>(initialDateRange);
      const [bookedDates, setBookedDates] = useState<Date[]>([]);
-     const [minDate, setMinDate] = useState<Date>(new Date());
      const [guests, setGuests] = useState<string>('1')
      const guestRange = Array.from({length: procedure.guests}, (_, index) => index +1)
 
