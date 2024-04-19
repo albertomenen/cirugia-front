@@ -12,13 +12,16 @@ const PrecedureDetailPage = async ({params}: {params: {id:string}}) => {
 
     console.log('userid',userId)
     console.log('procedure', params.id)
+    console.log('id', procedures.id)
+    console.log('image', procedures.image)
+    console.log(procedures)
 
     return(
         <main className="max-w-[1500px] mx-auto px-6">
             <div className="w-full h-[64vh] mb-4 overflow-hidden rounded-xl relative">
                 <Image 
                     fill
-                    src='/rino-despues.jpg'
+                    src={procedures.image_url}
                     className="object-cover w-full h-full"
                     alt="rino despues tratamiento"
                     />

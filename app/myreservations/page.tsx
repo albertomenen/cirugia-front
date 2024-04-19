@@ -16,12 +16,11 @@ const MyReservationsPage = async () => {
     console.log(reservations);
     return(
         <main className="max-w-[1500px] mx-auto px-6 pb-6">
-            <h1 className="mt-6 mb-2 text-2xl">{reservations.procedures}</h1>
+            <h1 className="mt-6 mb-2 text-2xl">{reservations.title}</h1>
 
             <div className="space-y-4">
                 {reservations.map((reservation: any) => {
                     const defaultImageUrl = '/profile-pic1.png';
-                    const imageUrl = reservation.procedures?.image_url ?? defaultImageUrl ;
                       
 
                     return (
@@ -31,7 +30,7 @@ const MyReservationsPage = async () => {
                         <div className="relative overflow-hidden aspect-square rounded-xl">
                             <Image 
                                 fill
-                                src={imageUrl}
+                                src={reservation.procedure.image_url}
                                 className="hover:scale-110 object-cover transition h-full w-full"
                                 alt="Doctor"
                                 />
@@ -40,20 +39,20 @@ const MyReservationsPage = async () => {
                     </div>  
 
                     <div className="col-span-1 md:col-span-3 space-y-2">
-                        <h2 className="mb-4 text-xl"> Cita programada {reservation.procedure}</h2>
+                        <h2 className="mb-4 text-xl"> Cita programada </h2>
 
-                        <p className="mb-2"><strong> Reserva para</strong> {reservation.start_date}</p>
+                        <p className="mb-2"><strong> Reserva para</strong>{reservation.start_date} </p>
 
                         <p className="mb-2"><strong>Reserva confirmada con</strong> Doctor</p>
 
-                        <p className="mb-2"><strong>Precio Aproximado de intervención</strong> {reservation.total_price}</p>
+                        <p className="mb-2"><strong>Precio Aproximado de intervención</strong> {reservation.procedure.price_per_procedure} € Aprox</p>
 
 
                         <Link 
-                                    href={`/procedures/${reservation.id}`}
+                                    href={`/procedures/${reservation.procedure.id}`}
                                     className="mt-6 inline-block cursor-pointer py-4 px-6 bg-airbnb text-white rounded-xl"
                                 >
-                                    Go to property
+                                    Go to procedure
                         </Link>
                     </div> 
                 </div>

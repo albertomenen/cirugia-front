@@ -12,6 +12,7 @@ export type ProcedureType = {
     title: string
     price_per_procedure: number
     image_url:string
+    is_favorite: boolean
 }
 
 interface ProcedureListProps {
@@ -23,6 +24,23 @@ const ProcedureList: React.FC <ProcedureListProps> = ({
 
 }) => {
     const  [procedures, setProcedures] = useState<ProcedureType[]>([]);
+
+    const markFavorite = (id:string, is_favorite:boolean) => {
+        const tmpProcedures = procedures.map((procedures:ProcedureType) => {
+            if (procedures.id == id) {
+                procedures.is_favorite = is_favorite
+            if (is_favorite) {
+                console.log("add to the favorite list")
+            } else {
+                console.log("removed from list")
+            }
+        }
+        return procedures
+
+        })
+
+        setProcedures(tmpProcedures)
+    }    
     const getProcedures= async () => {
         let url = '/api/procedures';
 
@@ -47,6 +65,7 @@ const ProcedureList: React.FC <ProcedureListProps> = ({
                     <ProcedureListItem
                         key={procedures.id}
                         procedures={procedures}
+                        markFavorite={(is_favorite: any) => markFavorite(procedures.id, is_favorite)}
                     />
                 )
             })}

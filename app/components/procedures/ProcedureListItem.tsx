@@ -2,13 +2,16 @@ import { defaultMaxListeners } from "events";
 import Image from "next/image";
 import { ProcedureType } from "./ProcedureList";
 import { useRouter } from "next/navigation";
+import FavoriteButton from "../FavoriteButton";
 
 interface ProcedureProps {
     procedures: ProcedureType
+    markFavorite?: (is_favorite: boolean) => void
 }
 
 const ProcedureListItem: React.FC<ProcedureProps> = ({
-    procedures
+    procedures,
+    markFavorite
 
 }) => {
     const router = useRouter();
@@ -25,6 +28,14 @@ const ProcedureListItem: React.FC<ProcedureProps> = ({
                     className="hover:scale-110 object-cover transition h-full w-full"
                     alt="Aumento de pecho"
                 />
+
+                {markFavorite && (
+                    <FavoriteButton
+                        id={procedures.id}
+                        is_favorite={procedures.is_favorite}
+                        markFavorite={(is_favorite)=> markFavorite(is_favorite)}
+                    />
+                )}
             </div>
             <div className="mt-2">
                 <p className="text-lg font-bold">{procedures.title}</p>
