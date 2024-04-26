@@ -17,10 +17,12 @@ export type ProcedureType = {
 
 interface ProcedureListProps {
     doctor_id?: string | null
+    favorites?:boolean;
 }
 
 const ProcedureList: React.FC <ProcedureListProps> = ({
-    doctor_id
+    doctor_id,
+    favorites
 
 }) => {
     const  [procedures, setProcedures] = useState<ProcedureType[]>([]);
@@ -47,11 +49,23 @@ const ProcedureList: React.FC <ProcedureListProps> = ({
         if (doctor_id) {
             url += `?doctor_id=${doctor_id}`
 
+        } else if (favorites) {
+
+            // todo: puede ser que sea is_favorites ? 
+            url += '?is_favorites=true'
         }
 
         const tmpProcedures = await apiService.get(url)
 
-        setProcedures(tmpProcedures.data);
+        setProcedures(tmpProcedures.data.map((procedures: ProcedureType) => {
+            if (tmpProcedures.favorites.includes(procedures.id)) {
+                procedures.is_favorite = true
+            } else {
+                procedures.is_favorite = false
+            }
+
+            return procedures
+        }));
     }
 
     useEffect(() => {
