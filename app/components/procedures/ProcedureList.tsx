@@ -17,7 +17,7 @@ export type ProcedureType = {
 
 interface ProcedureListProps {
     doctor_id?: string | null
-    favorites?:boolean;
+    favorites?:boolean | null;
 }
 
 const ProcedureList: React.FC <ProcedureListProps> = ({
